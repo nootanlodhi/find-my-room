@@ -1,95 +1,33 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client"
+import * as React from "react";
+import { Grid } from "@mui/material";
+import data from "../app/data/schema.json";
+import TemporaryDrawer from "./components/Modal/CardDetailsModal";
+import { ICardDetails } from "./interface/Interface";
+import BasicCard from "./components/Cards/Card";
+import FilterBar from "./components/Filterbar";
 
 export default function Home() {
+  const [openModal , setOpenModal] = React.useState<boolean>(false);
+  const [cardDetails , setCardDetails] = React.useState<ICardDetails[]>([]);
+
+  const handleCardDetails = (id:number) =>{
+    const filterData = data.filter((item) => item.id === id);
+    setCardDetails(filterData)
+    setOpenModal(true)
+  }
+  
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+    <main>
+      <FilterBar/>
+      <Grid container spacing={4} p={10}>
+        {data.map((item, index) => (
+          <Grid item xs={12} sm={6} md={6} lg={4} xl={3} key={index} onClick={()=>handleCardDetails(item.id)} sx={{cursor:"pointer"}}>
+            <BasicCard cardItem={item}/>
+          </Grid>
+        ))}
+      </Grid>
+        {openModal && <TemporaryDrawer openModal={openModal} setOpenModal={setOpenModal} cardDetails={cardDetails}/>}
     </main>
   );
 }
