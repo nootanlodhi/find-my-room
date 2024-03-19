@@ -1,8 +1,11 @@
+html{
+  font-size: 70%;
+}
 /* Navbar CSS */
 
 .logo-container{
   width: 10%;
-  height: 4rem;
+  height: 5rem;
   background-image: url("https://www.shutterstock.com/image-vector/vinnytsia-ukraine-june-23-2023-600nw-2321769253.jpg");
   background-size: cover;
   background-position: center;
@@ -12,7 +15,7 @@
   color: red;
   text-decoration: none;
   /* border-radius: 10px; */
-  font-size: 1.2rem;
+  font-size: 1.5rem;
 }
 
 .active{
@@ -53,7 +56,7 @@
 
 .img-box {
   width: 100%;
-  height: 15rem;
+  height: 20rem;
   background-size: cover;
   background-position: center;
   position: relative;
@@ -69,6 +72,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.card-wrapper{
+  transition: 0.4s ease-out;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.card-wrapper:hover{
+  transform: scale(0.9, 0.9);
 }
 
 /* Card Details Image CSS */
@@ -162,4 +174,10 @@
 
 .css-1ab2xsx{
   width: 65% !important;
+}
+
+@media (max-width: 600px){
+  .logo-container{
+    width: 20%;
+  }
 }

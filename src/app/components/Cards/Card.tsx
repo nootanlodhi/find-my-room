@@ -11,7 +11,7 @@ interface IProps{
 
 const BasicCard:React.FC<IProps> = ({cardItem}) => {
     return (
-      <Card sx={{ borderRadius: "20px", height: "100%" }}>
+      <Card sx={{ borderRadius: "20px", height: "100%" }} className="card-wrapper">
         <CardContent sx={{ padding: "0", minHeight: "300px" }}>
           <Box className="img-box" sx={{ backgroundImage: `url(${cardItem.thumbnailUrl})` }}>
             <Box className="fav-icon-container">

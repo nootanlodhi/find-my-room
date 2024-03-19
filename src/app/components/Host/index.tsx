@@ -4,22 +4,13 @@ import Avatar from "@mui/material/Avatar";
 import StarIcon from "@mui/icons-material/Star";
 import ShieldOutlinedIcon from "@mui/icons-material/ShieldOutlined";
 import { IHost } from "@/app/interface/Interface";
+import { joinedDate } from "@/app/Utils/utils";
 
 interface IProps {
   host: IHost;
 }
 
 const Host: React.FC<IProps> = ({ host }) => {
-  const joinedDate = (joinedAt: string) => {
-    const date = new Date(joinedAt);
-    const formattedDate = date.toLocaleString("en-US", {
-      month: "long",
-      year: "numeric",
-    });
-    const capitalizedMonth =
-      formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
-    return capitalizedMonth;
-  };
 
   return (
     <>

@@ -1,32 +1,30 @@
 "use client"
-import React from "react";
-import { Stack, Typography } from "@mui/material";
-import Avatar from "@mui/material/Avatar";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-
-interface TabPanelProps {
-  children?: React.ReactNode;
-  index: number;
-  value: number;
-}
+import * as React from 'react';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Stack from '@mui/material/Stack';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import Avatar from '@mui/material/Avatar';
 
 const Navbar = () => {
   const pathname = usePathname();
-  
   return (
-    <>
-      <Stack direction="row" spacing={2} justifyContent={"space-between"} alignItems={"center"} pr={10} pl={10}>
-        <div className="logo-container"></div>
-        <Stack direction="row" spacing={4} justifyContent={"space-between"}>
-        <Link className={`link ${pathname === "/" ? "active" : ""}`} href="/">Stay</Link>
-          <Typography>Experiences</Typography>
-          <Typography>Online Experiences</Typography>
-        </Stack>
+    <Box sx={{ flexGrow: 1, backgroundColor:"#fff" }}>
+      <AppBar position="fixed" sx={{backgroundColor:"#fff" }}>
+        <Toolbar sx={{display:"flex", justifyContent:"space-between"}}>
+          <div className="logo-container"></div>
+          <Stack direction="row" display={{xs:"none", sm:"block"}} spacing={4} justifyContent={"space-between"}>
+            <Link className={`link ${pathname === "/" ? "active" : ""}`} href="/">Stay</Link>
+            <Link className={`link ${pathname === "/experience" ? "active" : ""}`} href="/">Experiences</Link>
+            <Link className={`link ${pathname === "/online-experience" ? "active" : ""}`} href="/">Online Experiences</Link>
+          </Stack>
           <Avatar alt="Remy Sharp" src={"https://fmr-frontend-test.s3.ap-south-1.amazonaws.com/profile-4.jpeg"} />
-      </Stack>
-    </>
+        </Toolbar>
+      </AppBar>
+    </Box>
   );
-};
+}
 
 export default Navbar;

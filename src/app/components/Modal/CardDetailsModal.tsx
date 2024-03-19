@@ -12,6 +12,7 @@ import PlaceOffers from "../PlaceOffers/PlaceOffers";
 import RatingAndReview from "../RatingAndReview";
 import Host from "../Host";
 import ReserveRoom from "../ReserveRoom";
+import Reviewers from "../Reviewers";
 
 interface IProps {
   openModal: boolean;
@@ -72,6 +73,7 @@ const TemporaryDrawer: React.FC<IProps> = ({ openModal, setOpenModal, cardDetail
                       <PlaceOffers amenities={item.amenities} />
                       <RatingAndReview ratings={item.ratings} />
                       <Host host={item.host} />
+                      <Reviewers reviews={item.reviews}/>
                     </Grid>
                     <Grid item xs={4}>
                       <ReserveRoom data={item} />

@@ -19,8 +19,8 @@ export default function Home() {
   
   return (
     <main>
-      <FilterBar/>
-      <Grid container spacing={4} p={10}>
+      {/* <FilterBar/> */}
+      <Grid container spacing={4} pr={{xs:2, sm:10}} pl={{xs:2, sm:10}} pt={10} pb={10}>
         {data.map((item, index) => (
           <Grid item xs={12} sm={6} md={6} lg={4} xl={3} key={index} onClick={()=>handleCardDetails(item.id)} sx={{cursor:"pointer"}}>
             <BasicCard cardItem={item}/>
